@@ -45,14 +45,16 @@ $scope.addBalance = function() {
 };
 
 $scope.removeBalance = function(balance) {
-  var index = $scope.balances.indexOf(balance);
+  if (confirm ('Are you sure Delete?') ) {
+    var index = $scope.balances.indexOf(balance);
 
-  $scope.balances.splice(index, 1);
+    $scope.balances.splice(index, 1);
 
-  debits = 0, balance = 0;
-  for (var i=0; i < $scope.balances.length; i++ ) {
-        debits = debits + parseInt($scope.balances[i].debits);
-        balance = balance + parseInt($scope.balances[i].credits);
+    debits = 0, balance = 0;
+    for (var i=0; i < $scope.balances.length; i++ ) {
+          debits = debits + parseInt($scope.balances[i].debits);
+          balance = balance + parseInt($scope.balances[i].credits);
+    }
   }
 };
 
@@ -67,25 +69,29 @@ $scope.sortBy  = function(order) {
 };
 
 $scope.saveEdit = function(editDescription, editDebits, editCredits) {
-  var obj = {
-    date: new Date().toISOString().slice(0,10),
-    desc: editDescription,
-    debits: editDebits,
-    credits: editCredits
-  }
-  $scope.balances[currentIndex] = obj;
 
-  debits = 0, balance = 0;
-  for (var i=0; i < $scope.balances.length; i++ ) {
-        debits = debits + parseInt($scope.balances[i].debits);
-        balance = balance + parseInt($scope.balances[i].credits);
-  }
+  if (confirm ('Are you sure edit?') ) {
+    var obj = {
+      date: new Date().toISOString().slice(0,10),
+      desc: editDescription,
+      debits: editDebits,
+      credits: editCredits
+    }
+    $scope.balances[currentIndex] = obj;
 
+    debits = 0, balance = 0;
+    for (var i=0; i < $scope.balances.length; i++ ) {
+          debits = debits + parseInt($scope.balances[i].debits);
+          balance = balance + parseInt($scope.balances[i].credits);
+    }
+  }
 }
 
 $scope.cancelEdit = function() {
-  $scope.newBalanceToEdit = null;
-  $scope.editShow = false;
+
+    // todo code for deletion
+    $scope.newBalanceToEdit = null;
+    $scope.editShow = false;
 }
 
 $scope.showEditBalance = function(balance, index) {
