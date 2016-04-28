@@ -10,10 +10,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body ng-app>
+<body ng-app='myApp' ng-controller='mainCtrl'>
   <h1>Banking App Frontend</h1>
-
-
 
   <div class='container'>
 
@@ -38,14 +36,12 @@
         <input type="text" class="form-control" placeholder="Credits" ng-model='newBalance.credits'>
       </div>
 
-
-      <button class='btn btn-primary' ng-click='addContact()'>Add Balance</button>
+      <button class='btn btn-primary' ng-click='addBalance()'>Add Balance</button>
 
       <div class="form-group">
         <label>Search:</label>
-        <input type="text" class="form-control" placeholder="Email" ng-model='searchFilter'>
+        <input type="text" class="form-control" placeholder="Desc" ng-model='searchFilter'>
       </div>
-
 
       <div class="form-group">
         <label>orderBy:</label>
@@ -67,17 +63,16 @@
           <th>Delete</th>
         </thead>
         <tbody>
-          <!-- <tr ng-repeat='contact in contacts | filter:searchFilter | orderBy:sortOrder track by $index'> -->
           <tr ng-repeat='balance in balances | filter:searchFilter | orderBy:sortOrder track by $index'>
             <td>{{balance.date}}</td>
             <td>{{balance.desc}}</td>
             <td>{{balance.debits}}</td>
             <td>{{balance.credits}}</td>
-            <!-- <td>
-              <button type="button" class="btn btn-danger btn-sm" ng-click='removeContact(contact)'>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" ng-click='removeBalance(balance)'>
                 <span class="glyphicon glyphicon-remove"></span>
               </button>
-            </td> -->
+            </td>
           </tr>
         </tbody>
       </table>
