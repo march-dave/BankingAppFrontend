@@ -1,9 +1,13 @@
 {
   "name": "grade-tracker",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "script": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+   "start": "node app.js"
+  },
   "authors": [
-    "Cade Nichols <cade@cadenichols.com>"
+    "Dave Lee <ysangy@gmail.com>"
   ],
   "license": "ISC",
   "homepage": "",
@@ -15,6 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.5"
+    "angular": "^1.5.5",
+    "bootstrap": "^3.3.6"
   }
 }
