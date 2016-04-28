@@ -4,7 +4,9 @@
 var app = angular.module('myApp', []);
 
 app.controller('mainCtrl', function($scope) {
-
+ $scope.editShow = false;
+ var currentBalance;
+ var index;
 $scope.balances =
   [{
     date: "2000-01-12",
@@ -40,11 +42,29 @@ $scope.sortBy  = function(order) {
   }
 };
 
+$scope.saveEdit = function(editDescription, editDebits, editCredits) {
+  var obj = {
+    date: Date.now(),
+    desc: editDescription,
+    debits: editDebits,
+    credits: editCredits
+  }
+  $scope.balances[currentIndex] = obj;
+}
 
+$scope.cancelEdit = function() {
+  $scope.newBalanceToEdit = null;
+  $scope.editShow = false;
+}
 
+$scope.showEditBalance = function(balance, index) {
+  $scope.editShow = true;
+  currentBalance = balance;
+  currentIndex = index;
 
-
-
-
+  $scope.editDescription = balance.desc;
+  $scope.editDebits = balance.debits;
+  $scope.editCredits = balance.credits;
+}
 
 });

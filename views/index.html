@@ -40,7 +40,7 @@
 
       <div class="form-group">
         <label>Search:</label>
-        <input type="text" class="form-control" placeholder="Desc" ng-model='searchFilter'>
+        <input type="text" class="form-control" placeholder="Search" ng-model='searchFilter'>
       </div>
 
       <div class="form-group">
@@ -49,9 +49,8 @@
         <!-- <button ng-click='addName()'>click</button> -->
       </div>
 
-
     <div>
-      <h3>Balance ${{balance.length}} . </h3>
+      <h3>Balance ${{balances.length}} </h3>
     </div>
 
       <table class="table">
@@ -60,7 +59,7 @@
           <th ng-click='sortBy("desc")'>Desc</th>
           <th ng-click='sortBy("debits")'>Debits</th>
           <th ng-click='sortBy("credits")'>Credits</th>
-          <th>Delete</th>
+          <th>Edit / Delete</th>
         </thead>
         <tbody>
           <tr ng-repeat='balance in balances | filter:searchFilter | orderBy:sortOrder track by $index'>
@@ -69,17 +68,62 @@
             <td>{{balance.debits}}</td>
             <td>{{balance.credits}}</td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm" ng-click='removeBalance(balance)'>
-                <span class="glyphicon glyphicon-remove"></span>
-              </button>
+
+            <button type="button" class="btn btn-primary btn-sm" ng-click='showEditBalance(balance, $index, newBalanceToEdit)'>
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
+
+            <button type="button" class="btn btn-danger btn-sm" ng-click='removeBalance(balance)'>
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
             </td>
           </tr>
         </tbody>
       </table>
 
+  </div>
+
+  <!-- <div> -->
+  <div ng-show='editShow'>
+    <h2>Edit Balance</h2>
+
+      <div class="form-group">
+        <label>Date</label>
+        <input type="text" class="form-control" placeholder="Date" ng-model='newBalanceToEdit.date'>
+      </div>
+
+      <div class="form-group">
+          <label>Desc</label>
+          <input type="text" class="form-control" placeholder="Desc" ng-model='editDescription'>
+      </div>
+
+      <div class="form-group">
+        <label>Debits</label>
+        <input type="text" class="form-control" placeholder="Debits" ng-model='editDebits'>
+      </div>
+
+      <div class="form-group">
+        <label>Credits</label>
+        <input type="text" class="form-control" placeholder="Credits" ng-model='editCredits'>
+      </div>
+
+      <!-- <div class="form-group">
+        <label>Credits222</label>
+        <input type="text" class="form-control" placeholder="Credits222" ng-model='credit'>
+      </div> -->
+
+      <button class='btn btn-primary' ng-click='cancelEdit(newBalanceToEdit)'>Cancel</button>
+      <button class='btn btn-primary' ng-click='saveEdit(editDescription, editDebits, editCredits)'>Save</button>
+
+      <!-- <div class="form-group">
+        <label>Search:</label>
+        <input type="text" class="form-control" placeholder="Email" ng-model='searchFilter'>
+      </div> -->
 
 
   </div>
+
+
 
 
 </body>
